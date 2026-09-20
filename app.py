@@ -52,7 +52,9 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"[INFO] Using device: {device}")
 
 model = DeepfakeModel().to(device)
-model.load_state_dict(torch.load("best_model.pth", map_location=device))
+model.load_state_dict(
+    torch.load("best_model.pth", map_location=device, weights_only=False)
+)
 model.eval()
 print("[INFO] Model loaded successfully.")
 
